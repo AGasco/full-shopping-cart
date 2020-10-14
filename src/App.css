@@ -37,11 +37,12 @@
 }
 
 .App__mainContent {
-    flex: 3 60rem;
+    flex: 2.5 60rem;
 }
 
 .App__sidebar {
-    flex: 1 20rem;
+    flex: 1.5 20rem;
+    max-width: 700px;
 }
 
 .App__gridContainer>footer {

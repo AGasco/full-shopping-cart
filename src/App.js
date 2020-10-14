@@ -1,14 +1,16 @@
 //feature 1
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
 import data from "./data.json";
 import "./App.css";
+import Cart from "./components/Cart";
 
 function App() {
   const [products, setProducts] = useState(data.products);
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   const filterProducts = (e) => {
     const size = e.target.value;
@@ -36,6 +38,33 @@ function App() {
     setSort(e.target.value);
   };
 
+  const addToCart = (product) => {
+    const newCart = [...cartItems];
+    let alreadyInCart = false;
+    newCart.forEach((item) => {
+      if (item._id === product._id) {
+        console.log("We already have it");
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      newCart.push({ ...product, count: 1 });
+    }
+
+    setCartItems(newCart);
+  };
+
+  const removeFromCart = (cartItem) => {
+    const newCart = [...cartItems];
+    newCart.map((item, index) => {
+      if (item._id === cartItem._id) item.count--;
+      if (item.count === 0) newCart.splice(index, 1);
+    });
+
+    setCartItems(newCart);
+  };
+
   return (
     <div className="App">
       <div className="App__gridContainer">
@@ -52,9 +81,11 @@ function App() {
                 filterProducts={filterProducts}
                 sortProducts={sortProducts}
               />
-              <Products products={products} />
+              <Products addToCart={addToCart} products={products} />
             </div>
-            <div className="App__sidebar">Cart Items</div>
+            <div className="App__sidebar">
+              <Cart removeFromCart={removeFromCart} cartItems={cartItems} />
+            </div>
           </div>
         </main>
         <footer>All right is reserved</footer>
