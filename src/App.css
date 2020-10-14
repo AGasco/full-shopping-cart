@@ -31,6 +31,19 @@
     grid-area: main;
 }
 
+.App__content {
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.App__mainContent {
+    flex: 3 60rem;
+}
+
+.App__sidebar {
+    flex: 1 20rem;
+}
+
 .App__gridContainer>footer {
     grid-area: footer;
     background-color: #203040;
