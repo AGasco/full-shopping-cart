@@ -1,0 +1,47 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    min-height: max-content;
+    height: 50vh;
+    padding: 1rem;
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+}
+
+.cart__header {
+    padding: 0.8rem;
+    margin-bottom: 40px;
+    border-bottom: .1rem solid #c0c0c0;
+}
+
+.cart__items {
+    display: flex;
+    flex-direction: column;
+    min-height: max-content;
+    height: auto;
+}
+
+.cart__price {
+    margin-top: 40px;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.cart__price>* {
+    flex: 0.5;
+}
+
+.cart__price>p {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.cart__price>button {
+    font-size: 2rem;
+    padding: 10px 0;
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    background-color: goldenrod;
+    cursor: pointer;
+}
