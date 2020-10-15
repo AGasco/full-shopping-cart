@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
+import Fade from "react-reveal/Fade";
 import formatCurrency from "./../util";
 import "./../styles/Cart.css";
 
@@ -29,12 +30,14 @@ function Cart({ cartItems, removeFromCart, onCartProceed }) {
       </div>
       <div className="cart__items">
         {cartItems.map((item) => (
-          <CartItem
-            key={item.title}
-            quantity={item.count}
-            data={item}
-            removeFromCart={removeFromCart}
-          />
+          <Fade key={item.title} right>
+            {" "}
+            <CartItem
+              quantity={item.count}
+              data={item}
+              removeFromCart={removeFromCart}
+            />
+          </Fade>
         ))}
       </div>
       {cartItems.length !== 0 ? (
