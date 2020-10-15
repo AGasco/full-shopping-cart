@@ -3,7 +3,7 @@ import CartItem from "./CartItem";
 import formatCurrency from "./../util";
 import "./../styles/Cart.css";
 
-function Cart({ cartItems, removeFromCart }) {
+function Cart({ cartItems, removeFromCart, onCartProceed }) {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Cart({ cartItems, removeFromCart }) {
       {cartItems.length !== 0 ? (
         <div className="cart__price">
           <p>{total ? `Total: ${formatCurrency(total)}` : "Total: $ 0"}</p>
-          <button>Proceed</button>
+          <button onClick={onCartProceed}>Proceed</button>
         </div>
       ) : null}
     </div>

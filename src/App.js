@@ -5,12 +5,21 @@ import Filter from "./components/Filter";
 import data from "./data.json";
 import "./App.css";
 import Cart from "./components/Cart";
+import CheckoutForm from "./components/CheckoutForm";
 
 function App() {
   const [products, setProducts] = useState(data.products);
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([
+    ...JSON.parse(localStorage.getItem("cartItems")),
+  ]);
+  const [showForm, setShowForm] = useState(false);
+  const [order, setOrder] = useState({});
+
+  useEffect(() => {
+    console.log("order", order);
+  }, [order]);
 
   const filterProducts = (e) => {
     const size = e.target.value;
@@ -23,7 +32,6 @@ function App() {
       setProducts(newProducts);
     }
   };
-
   const sortProducts = (e) => {
     const sort = e.target.value;
     if (sort === "latest") {
@@ -53,6 +61,7 @@ function App() {
     }
 
     setCartItems(newCart);
+    localStorage.setItem("cartItems", JSON.stringify(newCart));
   };
 
   const removeFromCart = (cartItem) => {
@@ -63,6 +72,11 @@ function App() {
     });
 
     setCartItems(newCart);
+    localStorage.setItem("cartItems", JSON.stringify(newCart));
+  };
+
+  const onCartProceed = () => {
+    setShowForm(true);
   };
 
   return (
@@ -84,7 +98,14 @@ function App() {
               <Products addToCart={addToCart} products={products} />
             </div>
             <div className="App__sidebar">
-              <Cart removeFromCart={removeFromCart} cartItems={cartItems} />
+              <Cart
+                removeFromCart={removeFromCart}
+                cartItems={cartItems}
+                onCartProceed={onCartProceed}
+              />
+              {showForm ? (
+                <CheckoutForm cartItems={cartItems} setOrder={setOrder} />
+              ) : null}
             </div>
           </div>
         </main>

@@ -1,0 +1,36 @@
+.checkoutForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    padding-right: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.checkoutForm>div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.checkoutForm input {
+    padding: 10px 5px;
+}
+
+.checkoutForm__button {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    background-color: goldenrod;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+
+.checkoutForm__button:hover {
+    color: #f0f0f0;
+}
