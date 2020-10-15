@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
-import data from "./data.json";
-import "./App.css";
 import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
+import Fade from "react-reveal/Fade";
+import data from "./data.json";
+import "./App.css";
 
 function App() {
   const [products, setProducts] = useState(data.products);
@@ -104,7 +105,10 @@ function App() {
                 onCartProceed={onCartProceed}
               />
               {showForm ? (
-                <CheckoutForm cartItems={cartItems} setOrder={setOrder} />
+                <Fade right>
+                  {" "}
+                  <CheckoutForm cartItems={cartItems} setOrder={setOrder} />
+                </Fade>
               ) : null}
             </div>
           </div>
