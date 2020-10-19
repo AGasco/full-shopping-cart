@@ -1,25 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import formatCurrency from "./../util";
 import "./../styles/CartItem.css";
 
-function CartItem({ quantity, data, removeFromCart }) {
+function CartItem({ quantity, item, removeFromCart }) {
+  useEffect(() => {
+    console.log("item", item);
+  }, []);
   const renderPrice = () => {
-    if (quantity === 1) return formatCurrency(data.price);
+    if (quantity === 1) return formatCurrency(item.price);
     else {
-      return `${quantity} X ${formatCurrency(data.price)}`;
+      return `${quantity} X ${formatCurrency(item.price)}`;
     }
   };
   return (
     <div className="cartItem">
       <div className="cartItem__left">
         {" "}
-        <img src={data.image} alt={data.title} />
+        <img src={item.image} alt={item.title} />
       </div>
       <div className="cartItem__right">
-        <p className="cartItem__title">{data.title}</p>
+        <p className="cartItem__title">{item.title}</p>
         <div className="cartItem__price">
           <p>{renderPrice()}</p>
-          <button onClick={() => removeFromCart(data)}>Remove</button>
+          <button onClick={() => removeFromCart(item)}>Remove</button>
         </div>
       </div>
     </div>

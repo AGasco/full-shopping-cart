@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 import formatCurrency from "./../util";
 import "./../styles/Cart.css";
 
-function Cart({ cartItems, removeFromCart, onCartProceed }) {
+function Cart({ cartItems, onCartProceed, removeFromCart }) {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ function Cart({ cartItems, removeFromCart, onCartProceed }) {
   }, [cartItems]);
 
   const countItems = () => {
-    return cartItems.reduce((total, item) => total + item.count, 0);
+    return cartItems
+      ? cartItems.reduce((total, item) => total + item.count, 0)
+      : 0;
   };
 
   return (
@@ -34,7 +36,7 @@ function Cart({ cartItems, removeFromCart, onCartProceed }) {
             {" "}
             <CartItem
               quantity={item.count}
-              data={item}
+              item={item}
               removeFromCart={removeFromCart}
             />
           </Fade>

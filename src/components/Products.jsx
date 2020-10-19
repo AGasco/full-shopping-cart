@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
 import Fade from "react-reveal/Fade";
-import {
-  addProduct,
-  removeProduct,
-} from "../redux/actions/productActionCreators";
 import { connect } from "react-redux";
 import "./../styles/Products.css";
 import ProductModal from "./ProductModal";
@@ -48,6 +44,5 @@ function Products({ products, addToCart }) {
   );
 }
 
-const mapDispatchToProps = { addProduct, removeProduct };
-
-export default connect(null, mapDispatchToProps)(Products);
+export default Products;
+// export default connect(null, null)(Products);

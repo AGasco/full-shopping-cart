@@ -11,18 +11,6 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   let products = [];
   switch (action.type) {
-    case actions.PRODUCT_ADDED:
-      return {
-        ...state,
-        products: [...state.products, action.payload],
-      };
-    case actions.PRODUCT_REMOVED:
-      return {
-        ...state,
-        products: state.products.filter(
-          (product) => product.id !== action.payload.id
-        ),
-      };
     case actions.PRODUCTS_FILTERED_BY_SIZE:
       if (action.payload === "ALL") products = initialState.originalProducts;
       else

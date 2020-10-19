@@ -5,20 +5,18 @@ import Filter from "./components/Filter";
 import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import Fade from "react-reveal/Fade";
+import {
+  addItemToCart,
+  removeItemFromCart,
+} from "./redux/actions/cartActionCreators";
 import { connect } from "react-redux";
 import "./App.css";
 
-function App({ products }) {
-  const [cartItems, setCartItems] = useState([]);
+function App({ products, cartItems, addItemToCart, removeItemFromCart }) {
   const [showForm, setShowForm] = useState(false);
   const [order, setOrder] = useState({});
 
-  useEffect(() => {
-    if (products && localStorage.getItem("cartItems"))
-      setCartItems([...JSON.parse(localStorage.getItem("cartItems"))]);
-  }, []);
-
-  const addToCart = (product) => {
+  const handleAddToCart = (product) => {
     const newCart = [...cartItems];
     let alreadyInCart = false;
     newCart.forEach((item) => {
@@ -32,18 +30,18 @@ function App({ products }) {
       newCart.push({ ...product, count: 1 });
     }
 
-    setCartItems(newCart);
+    addItemToCart(newCart);
     localStorage.setItem("cartItems", JSON.stringify(newCart));
   };
 
-  const removeFromCart = (cartItem) => {
+  const handleRemoveFromCart = (cartItem) => {
     const newCart = [...cartItems];
     newCart.map((item, index) => {
       if (item._id === cartItem._id) item.count--;
       if (item.count === 0) newCart.splice(index, 1);
     });
 
-    setCartItems(newCart);
+    removeItemFromCart(newCart);
     localStorage.setItem("cartItems", JSON.stringify(newCart));
   };
 
@@ -61,11 +59,11 @@ function App({ products }) {
           <div className="App__content">
             <div className="App__mainContent">
               <Filter />
-              <Products addToCart={addToCart} products={products} />
+              <Products addToCart={handleAddToCart} products={products} />
             </div>
             <div className="App__sidebar">
               <Cart
-                removeFromCart={removeFromCart}
+                removeFromCart={handleRemoveFromCart}
                 cartItems={cartItems}
                 onCartProceed={onCartProceed}
               />
@@ -87,7 +85,10 @@ function App({ products }) {
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
+    cartItems: state.cart.items,
   };
 };
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = { addItemToCart, removeItemFromCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
