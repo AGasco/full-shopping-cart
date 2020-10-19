@@ -5,47 +5,18 @@ import Filter from "./components/Filter";
 import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import Fade from "react-reveal/Fade";
-import data from "./data.json";
+import { connect } from "react-redux";
 import "./App.css";
 
-function App() {
-  const [products, setProducts] = useState(data.products);
-  const [size, setSize] = useState("");
-  const [sort, setSort] = useState("");
-  const [cartItems, setCartItems] = useState([
-    ...JSON.parse(localStorage.getItem("cartItems")),
-  ]);
+function App({ products }) {
+  const [cartItems, setCartItems] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [order, setOrder] = useState({});
 
   useEffect(() => {
-    console.log("order", order);
-  }, [order]);
-
-  const filterProducts = (e) => {
-    const size = e.target.value;
-    if (size === "ALL") setProducts(data.products);
-    else {
-      setSize(size);
-      const newProducts = data.products.filter((product) =>
-        product.availableSizes.includes(size)
-      );
-      setProducts(newProducts);
-    }
-  };
-  const sortProducts = (e) => {
-    const sort = e.target.value;
-    if (sort === "latest") {
-      products.sort((a, b) => b.id - a.id);
-    } else if (sort === "lowest") {
-      products.sort((a, b) => a.price - b.price);
-    } else if (sort === "highest") {
-      products.sort((a, b) => b.price - a.price);
-    } else {
-      console.warn("Wrong input in sortProducts()");
-    }
-    setSort(e.target.value);
-  };
+    if (products && localStorage.getItem("cartItems"))
+      setCartItems([...JSON.parse(localStorage.getItem("cartItems"))]);
+  }, []);
 
   const addToCart = (product) => {
     const newCart = [...cartItems];
@@ -89,13 +60,7 @@ function App() {
         <main>
           <div className="App__content">
             <div className="App__mainContent">
-              <Filter
-                count={products.length}
-                size={size}
-                sort={sort}
-                filterProducts={filterProducts}
-                sortProducts={sortProducts}
-              />
+              <Filter />
               <Products addToCart={addToCart} products={products} />
             </div>
             <div className="App__sidebar">
@@ -119,4 +84,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    products: state.products.products,
+  };
+};
+
+export default connect(mapStateToProps, null)(App);
