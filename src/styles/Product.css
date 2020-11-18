@@ -35,15 +35,17 @@
     /* font-weight: 600; */
 }
 
-.product__price>button {
-    background-color: goldenrod;
+.product__button {
+    background-color: #364792;
+    color: white;
     cursor: pointer;
     font-size: 2rem;
     padding: 10px 0;
     font-family: Montserrat, Helvetica, Arial, sans-serif;
     transition: all 0.1s;
+    border-radius: 10px;
 }
 
 .product__price>button:hover {
-    color: #f0f0f0;
+    background-color: #41529F;
 }

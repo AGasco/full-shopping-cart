@@ -29,6 +29,11 @@
     margin-bottom: 30px;
 }
 
+.productModal__title {
+    font-size: 2.75rem;
+    color: #364792;
+}
+
 .productModal__img {
     height: 100%;
     width: 100%;
@@ -48,7 +53,7 @@
 }
 
 .productModal__closeBtn:hover {
-    background-color: goldenrod;
+    background-color: #9F4152;
     color: white;
 }
 
@@ -87,7 +92,9 @@
 }
 
 .productModal__price>button {
-    background-color: goldenrod;
+    background-color: #364792;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
     font-size: 2rem;
     padding: 10px 0;
@@ -96,5 +103,5 @@
 }
 
 .productModal__price>button:hover {
-    color: white;
+    background-color: #41529F;
 }

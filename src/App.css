@@ -11,20 +11,23 @@
 
 .App__gridContainer>header {
     grid-area: header;
-    background-color: #203040;
-    color: white;
+    background-color: white;
     display: flex;
+    justify-content: center;
+    margin-right: 600px;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .App__gridContainer>header>a {
-    color: white;
+    color: black;
+    font-weight: 600;
+    font-size: 3rem;
     text-decoration: none;
 }
 
 .App__gridContainer a:hover {
-    color: #ff8000;
+    color: #364792;
 }
 
 .App__gridContainer>main {
@@ -46,10 +49,25 @@
 }
 
 .App__gridContainer>footer {
+    font-size: 1.3rem;
     grid-area: footer;
-    background-color: #203040;
+    background-color: #1B275B;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.App__footerName {
+    font-size: 1.5rem;
+    padding: 0 5px;
+    color: white;
+}
+
+.App__footerHeart {
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 0 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #d92e33
 }

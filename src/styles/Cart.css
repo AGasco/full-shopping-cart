@@ -41,14 +41,17 @@
 }
 
 .cart__price>button {
+    border-radius: 10px;
     font-size: 2rem;
     padding: 10px 0;
     font-family: Montserrat, Helvetica, Arial, sans-serif;
-    background-color: goldenrod;
+    background-color: #364792;
+    color: white;
     cursor: pointer;
     transition: all 0.1s;
 }
 
 .cart__price>button:hover {
+    background-color: #41529F;
     color: #f0f0f0;
 }

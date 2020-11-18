@@ -45,6 +45,13 @@
 
 .cartItem__price>button {
     font-size: 2rem;
+    background-color: #9F4152;
+    color: white;
+    border-radius: 10px;
     padding: 10px 0;
     cursor: pointer;
+}
+
+.cartItem__price>button:hover {
+    background-color: #B04E60
 }

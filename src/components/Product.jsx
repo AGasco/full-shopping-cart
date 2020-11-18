@@ -11,7 +11,7 @@ function Product({ data, addToCart, onImgClick }) {
       </a>
       <div className="product__price">
         <div>{formatCurrency(data.price)}</div>
-        <button onClick={() => addToCart(data)} className="button primary">
+        <button onClick={() => addToCart(data)} className="product__button">
           Add to Cart
         </button>
       </div>

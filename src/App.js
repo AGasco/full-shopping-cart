@@ -1,5 +1,5 @@
 //feature 1
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
 import Cart from "./components/Cart";
@@ -53,7 +53,7 @@ function App({ products, cartItems, addItemToCart, removeItemFromCart }) {
     <div className="App">
       <div className="App__gridContainer">
         <header>
-          <a href="/">React-Redux Full Shopping Cart</a>
+          <a href="/">REACT-REDUX FULL SHOPPING CART</a>
         </header>
         <main>
           <div className="App__content">
@@ -76,7 +76,12 @@ function App({ products, cartItems, addItemToCart, removeItemFromCart }) {
             </div>
           </div>
         </main>
-        <footer>All right is reserved</footer>
+        <footer>
+          <p> Built and designed by</p>
+          <span className="App__footerName">Antonio F. Gasco</span>with{" "}
+          <span className="App__footerHeart">{"<3"}</span>
+          <p>(and ReactJS of course)</p>
+        </footer>
       </div>
     </div>
   );
